@@ -35,6 +35,22 @@ class Sp2dCreate extends Component
     public function mount(Project $project)
     {
         $this->project = $project;
+
+        $check = $this->check();
+        if ($check) {
+            return redirect()->route('project-list')->with('error', 'SP2D dan Nilai Project sudah ada');
+        }
+    }
+
+    public function check()
+    {
+        $p_id = $this->project->id;
+        $p = Project::with('sp2d')->where('id', $p_id)->first();
+
+        if ($p->sp2d()->count() > 0) {
+            return true;
+        }
+        return false;
     }
 
     public function render()

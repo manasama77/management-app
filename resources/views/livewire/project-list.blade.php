@@ -14,7 +14,16 @@
         <div class="alert alert-success shadow-lg">
             <div class="flex items-center gap-2">
                 <x-fas-check class="size-4" />
-                <span>{{ session('success') }}</span>
+                <span class="font-bold">{{ session('success') }}</span>
+            </div>
+        </div>
+        @endif
+
+        @if (session()->has('error'))
+        <div class="alert alert-error shadow-lg">
+            <div class="flex items-center gap-2">
+                <x-fas-times class="size-4" />
+                <span class="font-bold">{{ session('error') }}</span>
             </div>
         </div>
         @endif
@@ -191,7 +200,7 @@
     if (divAlert) {
         setTimeout(() => {
             divAlert.remove();
-        }, 3000);
+        }, 5000);
     }
 </script>
 @endpush

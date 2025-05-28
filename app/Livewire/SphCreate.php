@@ -35,6 +35,22 @@ class SphCreate extends Component
     public function mount(Project $project)
     {
         $this->project = $project;
+
+        $check = $this->check();
+        if ($check) {
+            return redirect()->route('project-list')->with('error', 'SPH sudah ada');
+        }
+    }
+
+    public function check()
+    {
+        $p_id = $this->project->id;
+        $p = Project::with('sph')->where('id', $p_id)->first();
+
+        if ($p->sph()->count() > 0) {
+            return true;
+        }
+        return false;
     }
 
     public function render()

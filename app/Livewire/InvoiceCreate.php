@@ -25,6 +25,22 @@ class InvoiceCreate extends Component
     public function mount(Project $project)
     {
         $this->project = $project;
+
+        $check = $this->check();
+        if ($check) {
+            return redirect()->route('project-list')->with('error', 'Invoice sudah ada');
+        }
+    }
+
+    public function check()
+    {
+        $p_id = $this->project->id;
+        $p = Project::with('invoice')->where('id', $p_id)->first();
+
+        if ($p->invoice()->count() > 0) {
+            return true;
+        }
+        return false;
     }
 
     public function render()

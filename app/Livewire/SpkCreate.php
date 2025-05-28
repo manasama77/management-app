@@ -30,6 +30,22 @@ class SpkCreate extends Component
     public function mount(Project $project)
     {
         $this->project = $project;
+
+        $check = $this->check();
+        if ($check) {
+            return redirect()->route('project-list')->with('error', 'SPK sudah ada');
+        }
+    }
+
+    public function check()
+    {
+        $p_id = $this->project->id;
+        $p = Project::with('spk')->where('id', $p_id)->first();
+
+        if ($p->spk()->count() > 0) {
+            return true;
+        }
+        return false;
     }
 
     public function render()
