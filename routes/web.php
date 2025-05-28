@@ -22,6 +22,7 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\ProjectListCreate;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
+use App\Livewire\UserEdit;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -56,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('user-list', UserList::class)->name('user-list');
     Route::get('user-create', UserCreate::class)->name('user.create');
+    Route::get('user-edit/{user}', UserEdit::class)->name('user.edit');
 
     Route::redirect('settings', 'settings/profile');
 

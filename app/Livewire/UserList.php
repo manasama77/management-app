@@ -19,7 +19,7 @@ class UserList extends Component
     public function render()
     {
         $keyword = $this->keyword;
-        $user_lists = User::when($keyword != '', function($q) use ($keyword) {
+        $user_lists = User::when($keyword != '', function ($q) use ($keyword) {
             $q->whereLike('name', "%$keyword%")
                 ->orWhereLike('username', "%$keyword%")
                 ->orWhereLike('email', "%$keyword%");

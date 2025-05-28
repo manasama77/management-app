@@ -11,29 +11,29 @@
         <div class="card w-96 bg-base-100 card-md shadow-sm">
             <div class="card-body">
                 <h2 class="card-title">Form User</h2>
-                <form class="flex flex-col gap-4" onsubmit="event.preventDefault(); comingSoon()">
+                <form class="flex flex-col gap-4" wire:submit.prevent="save">
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="username">Username</legend>
                         <input type="text" name="username" class="input" placeholder="Username"
                             wire:model.live.debounce="username" />
                         @error('username')
-                            <p class="label text-error">{{ $message }}</p>
+                        <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="password">Password</legend>
                         <input type="password" name="password" class="input" placeholder="Password"
-                            wire:model.live.debounce="password" />
+                            wire:model="password" />
                         @error('password')
-                            <p class="label text-error">{{ $message }}</p>
+                        <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="password_confirmation">Konfirmasi Password</legend>
                         <input type="password" name="password_confirmation" class="input"
-                            placeholder="Konfirmasi Password" wire:model.live.debounce="password_confirmation" />
+                            placeholder="Konfirmasi Password" wire:model="password_confirmation" />
                         @error('password_confirmation')
-                            <p class="label text-error">{{ $message }}</p>
+                        <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
                     <hr />
@@ -42,7 +42,7 @@
                         <input type="text" name="name" class="input" placeholder="Nama"
                             wire:model.live.debounce="name" />
                         @error('name')
-                            <p class="label text-error">{{ $message }}</p>
+                        <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
                     <fieldset class="fieldset">
@@ -50,11 +50,11 @@
                         <input type="email" name="email" class="input" placeholder="mail@example.com"
                             wire:model.live.debounce="email" />
                         @error('email')
-                            <p class="label text-error">{{ $message }}</p>
+                        <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
                     <div class="justify-end card-actions">
-                        <button type="submit" class="btn btn-primary" @disabled($errors->any())>
+                        <button type="submit" class="btn btn-primary">
                             <x-fas-save class="size-4" /> Simpan
                         </button>
                     </div>
@@ -65,5 +65,5 @@
 </div>
 
 @push('scripts')
-    <script></script>
+<script></script>
 @endpush

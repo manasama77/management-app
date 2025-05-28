@@ -26,27 +26,27 @@ class Project extends Model
     {
         $progress = 0;
 
-        if($this->sph()->count() > 0) {
+        if ($this->sph()->count() > 0) {
             $progress += (100 / 6);
         }
 
-        if($this->spk()->count() > 0) {
+        if ($this->spk()->count() > 0) {
             $progress += (100 / 6);
         }
 
-        if($this->kak_rab()->count() > 0) {
+        if ($this->kak_rab()->count() > 0) {
             $progress += (100 / 6);
         }
 
-        if($this->invoice()->count() > 0) {
+        if ($this->invoice()->count() > 0) {
             $progress += (100 / 6);
         }
 
-        if($this->bast()->count() > 0) {
+        if ($this->bast()->count() > 0) {
             $progress += (100 / 6);
         }
 
-        if($this->sp2d()->count() > 0) {
+        if ($this->sp2d()->count() > 0) {
             $progress += (100 / 6);
         }
 

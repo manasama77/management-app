@@ -198,10 +198,6 @@
 
 @script
 <script>
-    $wire.dispatch('show-detail-project', {
-        id: 1
-    });
-
     const modalTitle = document.querySelector('#v_title');
     const modalDetail = document.querySelector('#modal_detail');
 

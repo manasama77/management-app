@@ -25,7 +25,8 @@
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
-                <flux:navlist.item :href="route('project-list')" :current="request()->routeIs('project-list')" wire:navigate>
+                <flux:navlist.item :href="route('project-list')" :current="request()->routeIs('project-list')"
+                    wire:navigate>
                     <div class="flex flex-row items-center gap-2">
                         <x-fas-project-diagram class="size-4" />
                         <div class="pt-0.5">{{ __('Project') }}</div>
@@ -49,7 +50,8 @@
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
-                <flux:navlist.item :href="route('kak-rab-list')" :current="request()->routeIs('kak-rab-list')" wire:navigate>
+                <flux:navlist.item :href="route('kak-rab-list')" :current="request()->routeIs('kak-rab-list')"
+                    wire:navigate>
                     <div class="flex flex-row items-center gap-2">
                         <x-fas-file-lines class="size-4" />
                         <div class="pt-0.5">{{ __('KAK & RAB') }}</div>
@@ -57,7 +59,8 @@
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
-                <flux:navlist.item :href="route('invoice-list')" :current="request()->routeIs('invoice-list')" wire:navigate>
+                <flux:navlist.item :href="route('invoice-list')" :current="request()->routeIs('invoice-list')"
+                    wire:navigate>
                     <div class="flex flex-row items-center gap-2">
                         <x-fas-file-lines class="size-4" />
                         <div class="pt-0.5">{{ __('Invoice') }}</div>

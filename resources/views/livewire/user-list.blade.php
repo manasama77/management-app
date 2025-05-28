@@ -12,7 +12,7 @@
 
         @if (session()->has('success'))
             <div class="alert alert-success shadow-lg">
-                <div>
+                <div class="flex items-center gap-2">
                     <x-fas-check class="size-4" />
                     <span>{{ session('success') }}</span>
                 </div>
@@ -72,5 +72,5 @@
 @endpush
 
 @script
-    <script></script>
+<script></script>
 @endscript
