@@ -15,10 +15,7 @@ class SpkCreate extends Component
 {
     use WithFileUploads;
 
-    public $project_id;
-    public $project_name;
-    public $client;
-    public $no_sph;
+    public ?Project $project;
 
     #[Validate('required', message: 'No SPK harus diisi')]
     #[Validate('min:4', message: 'No SPK harus diisi minimal 4 karakter')]
@@ -30,15 +27,25 @@ class SpkCreate extends Component
     #[Validate('max:5120', message: 'File SPK harus diisi kurang dari 5 MB')]
     public $spk_file;
 
-    public function mount(Project $project) {
-        $this->project_id = $project->id;
-        $this->project_name = $project->project_name;
-        $this->client = $project->client;
-        $this->no_sph = $project->sph->no_sph;
+    public function mount(Project $project)
+    {
+        $this->project = $project;
     }
 
     public function render()
     {
         return view('livewire.spk-create');
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->project->spk()->create([
+            'no_spk' => $this->no_spk,
+            'spk_file' => $this->spk_file->store('spk', 'public'),
+        ]);
+
+        return redirect()->route('project-list')->with('success', 'SPK berhasil ditambahkan');
     }
 }

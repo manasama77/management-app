@@ -25,10 +25,10 @@ class BastList extends Component
             'project.spk',
         ])->when($keyword != '', function ($q) use ($keyword) {
             $q->whereLike('no_sph', "%$keyword%")
-            ->orWhereHas('project', function ($qp) use ($keyword) {
-                 $qp->WhereLike('project_name', "%$keyword%")
-                ->orWhereLike('client', "%$keyword%");
-            });
+                ->orWhereHas('project', function ($qp) use ($keyword) {
+                    $qp->WhereLike('project_name', "%$keyword%")
+                        ->orWhereLike('client', "%$keyword%");
+                });
         })->paginate(5);
 
         return view('livewire.bast-list', [

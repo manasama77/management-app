@@ -15,25 +15,31 @@ class BastCreate extends Component
 {
     use WithFileUploads;
 
-    public $project_id;
-    public $project_name;
-    public $client;
-    public $no_spk;
+    public ?Project $project;
 
     #[Validate('required', message: 'File BAST harus diisi')]
     #[Validate('file', message: 'File BAST gagal diupload')]
     #[Validate('max:5120', message: 'File BAST harus diisi kurang dari 5 MB')]
     public $bast_file;
 
-    public function mount(Project $project) {
-        $this->project_id = $project->id;
-        $this->project_name = $project->project_name;
-        $this->client = $project->client;
-        $this->no_spk = $project->spk->no_spk;
+    public function mount(Project $project)
+    {
+        $this->project = $project;
     }
 
     public function render()
     {
         return view('livewire.bast-create');
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->project->bast()->create([
+            'bast_file' => $this->bast_file->store('bast', 'public'),
+        ]);
+
+        return redirect()->route('project-list')->with('success', 'BAST berhasil ditambahkan');
     }
 }

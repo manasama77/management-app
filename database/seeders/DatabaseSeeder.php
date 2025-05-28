@@ -28,15 +28,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        Project::factory()->count(10)->create()->each(function ($project) {
-            $project_id = $project->id;
+        // Project::factory()->count(10)->create()->each(function ($project) {
+        //     $project_id = $project->id;
 
-            Sph::factory()->create(['project_id' => $project_id]);
-            Spk::factory()->create(['project_id' => $project_id]);
-            KakRab::factory()->create(['project_id' => $project_id]);
-            Invoice::factory()->create(['project_id' => $project_id]);
-            Bast::factory()->create(['project_id' => $project_id]);
-            Sp2d::factory()->create(['project_id' => $project_id]);
-        });
+        //     Sph::factory()->create(['project_id' => $project_id]);
+        //     Spk::factory()->create(['project_id' => $project_id]);
+        //     KakRab::factory()->create(['project_id' => $project_id]);
+        //     Invoice::factory()->create(['project_id' => $project_id]);
+        //     Bast::factory()->create(['project_id' => $project_id]);
+        //     Sp2d::factory()->create(['project_id' => $project_id]);
+        // });
     }
 }

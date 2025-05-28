@@ -15,25 +15,31 @@ class InvoiceCreate extends Component
 {
     use WithFileUploads;
 
-    public $project_id;
-    public $project_name;
-    public $client;
-    public $no_spk;
+    public ?Project $project;
 
     #[Validate('required', message: 'File Invoice harus diisi')]
     #[Validate('file', message: 'File Invoice gagal diupload')]
     #[Validate('max:5120', message: 'File Invoice harus diisi kurang dari 5 MB')]
     public $invoice_file;
 
-    public function mount(Project $project) {
-        $this->project_id = $project->id;
-        $this->project_name = $project->project_name;
-        $this->client = $project->client;
-        $this->no_spk = $project->spk->no_spk;
+    public function mount(Project $project)
+    {
+        $this->project = $project;
     }
 
     public function render()
     {
         return view('livewire.invoice-create');
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->project->invoice()->create([
+            'invoice_file' => $this->invoice_file->store('invoice', 'public'),
+        ]);
+
+        return redirect()->route('project-list')->with('success', 'Invoice berhasil ditambahkan');
     }
 }

@@ -2,22 +2,22 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Forms\ProjectForm;
 use App\Models\User;
 use App\Models\Project;
 use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Validate;
+use App\Livewire\Forms\ProjectForm;
 
-class ProjectListCreate extends Component
+class ProjectListEdit extends Component
 {
     public ProjectForm $form;
 
-    public $title = 'Tambah Project';
+    public $title = 'Edit Project';
 
-    public function mount()
+    public function mount(Project $project)
     {
-        $this->form->year = Carbon::now()->year;
+        $this->form->setProject($project);
     }
 
     public function render()
@@ -31,8 +31,8 @@ class ProjectListCreate extends Component
 
     public function save()
     {
-        $this->form->store();
+        $this->form->update();
 
-        return redirect()->route('project-list')->with('success', 'Project berhasil ditambahkan');
+        return redirect()->route('project-list')->with('success', 'Project berhasil diubah');
     }
 }

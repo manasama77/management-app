@@ -20,30 +20,32 @@
                 </thead>
                 <tbody>
                     @if ($sph_lists->count() == 0)
-                        <tr>
-                            <td colspan="5" class="text-center">Data tidak ditemukan</td>
-                        </tr>
+                    <tr>
+                        <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                    </tr>
                     @endif
                     @foreach ($sph_lists as $sph_list)
-                        <tr>
-                            <td class="text-nowrap">{{ $sph_list->no_sph }}</td>
-                            <td class="text-nowrap">{{ $sph_list->project->client }}</td>
-                            <td class="text-nowrap">{{ $sph_list->project->project_name }}</td>
-                            <td>
-                                <div class="flex justify-center items-center">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="comingSoon()">
-                                        <x-fas-download class="size-4" />
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="flex justify-center items-center">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="comingSoon()">
-                                        <x-fas-download class="size-4" />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="text-nowrap">{{ $sph_list->no_sph }}</td>
+                        <td class="text-nowrap">{{ $sph_list->project->client }}</td>
+                        <td class="text-nowrap">{{ $sph_list->project->project_name }}</td>
+                        <td>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('download', ['path' => $sph_list->berita_acara_file]) }}"
+                                    target="_blank" class="btn btn-secondary btn-sm">
+                                    <x-fas-download class="size-4" />
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('download', ['path' => $sph_list->acara_negosiasi_file]) }}"
+                                    target="_blank" class="btn btn-secondary btn-sm">
+                                    <x-fas-download class="size-4" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -54,9 +56,9 @@
 </div>
 
 @push('scripts')
-    <script></script>
+<script></script>
 @endpush
 
 @script
-    <script></script>
+<script></script>
 @endscript

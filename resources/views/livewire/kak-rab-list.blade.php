@@ -22,32 +22,34 @@
                 </thead>
                 <tbody>
                     @if ($kak_rab_lists->count() == 0)
-                        <tr>
-                            <td colspan="7" class="text-center">Data tidak ditemukan</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center">Data tidak ditemukan</td>
+                    </tr>
                     @endif
                     @foreach ($kak_rab_lists as $kak_rab_list)
-                        <tr>
-                            <td class="text-nowrap">{{ $kak_rab_list->no_kak }}</td>
-                            <td class="text-nowrap">{{ $kak_rab_list->no_rab }}</td>
-                            <td class="text-nowrap">{{ $kak_rab_list->project->spk->no_spk }}</td>
-                            <td class="text-nowrap">{{ $kak_rab_list->project->client }}</td>
-                            <td class="text-nowrap">{{ $kak_rab_list->project->project_name }}</td>
-                            <td>
-                                <div class="flex justify-center items-center">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="comingSoon()">
-                                        <x-fas-download class="size-4" />
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="flex justify-center items-center">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="comingSoon()">
-                                        <x-fas-download class="size-4" />
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="text-nowrap">{{ $kak_rab_list->no_kak }}</td>
+                        <td class="text-nowrap">{{ $kak_rab_list->no_rab }}</td>
+                        <td class="text-nowrap">{{ $kak_rab_list->project->spk->no_spk }}</td>
+                        <td class="text-nowrap">{{ $kak_rab_list->project->client }}</td>
+                        <td class="text-nowrap">{{ $kak_rab_list->project->project_name }}</td>
+                        <td>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('download', ['path' => $kak_rab_list->kak_file]) }}"
+                                    target="_blank" class="btn btn-secondary btn-sm">
+                                    <x-fas-download class="size-4" />
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex justify-center items-center">
+                                <a href="{{ route('download', ['path' => $kak_rab_list->rab_file]) }}"
+                                    target="_blank" class="btn btn-secondary btn-sm">
+                                    <x-fas-download class="size-4" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -58,9 +60,9 @@
 </div>
 
 @push('scripts')
-    <script></script>
+<script></script>
 @endpush
 
 @script
-    <script></script>
+<script></script>
 @endscript

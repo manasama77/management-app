@@ -15,10 +15,7 @@ class KakRabCreate extends Component
 {
     use WithFileUploads;
 
-    public $project_id;
-    public $project_name;
-    public $client;
-    public $no_spk;
+    public ?Project $project;
 
     #[Validate('required', message: 'No KAK harus diisi')]
     #[Validate('min:4', message: 'No KAK harus diisi minimal 4 karakter')]
@@ -40,15 +37,27 @@ class KakRabCreate extends Component
     #[Validate('max:5120', message: 'File RAB harus diisi kurang dari 5 MB')]
     public $rab_file;
 
-    public function mount(Project $project) {
-        $this->project_id = $project->id;
-        $this->project_name = $project->project_name;
-        $this->client = $project->client;
-        $this->no_spk = $project->spk->no_spk;
+    public function mount(Project $project)
+    {
+        $this->project = $project;
     }
 
     public function render()
     {
         return view('livewire.kak-rab-create');
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->project->kak_rab()->create([
+            'no_kak' => $this->no_kak,
+            'kak_file' => $this->kak_file->store('kak', 'public'),
+            'no_rab' => $this->no_rab,
+            'rab_file' => $this->rab_file->store('rab', 'public'),
+        ]);
+
+        return redirect()->route('project-list')->with('success', 'KAK dan RAB berhasil ditambahkan');
     }
 }

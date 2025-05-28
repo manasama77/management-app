@@ -1,6 +1,6 @@
 <div>
     <div class="container flex flex-col justify-center space-y-4">
-        <h1 class="text-2xl font-bold">Tambah User</h1>
+        <h1 class="text-2xl font-bold">{{ $title }}</h1>
 
         <div class="flex flex-col lg:flex-row lg:justify-between items-center gap-4">
             <a href="{{ route('project-list') }}" class="btn btn-secondary btn-sm w-full lg:w-auto" wire:navigate>
@@ -21,10 +21,10 @@
                         @enderror
                     </fieldset>
                     <fieldset class="fieldset">
-                        <legend class="fieldset-legend" for="nama_project">Nama Project</legend>
-                        <input type="text" name="nama_project" class="input" placeholder="Nama Project"
-                            wire:model.live.debounce="form.nama_project" />
-                        @error('form.nama_project')
+                        <legend class="fieldset-legend" for="project_name">Nama Project</legend>
+                        <input type="text" name="project_name" class="input" placeholder="Nama Project"
+                            wire:model.live.debounce="form.project_name" />
+                        @error('form.project_name')
                             <p class="label text-error">{{ $message }}</p>
                         @enderror
                     </fieldset>
@@ -39,7 +39,7 @@
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="year">Tahun</legend>
                         <input type="number" name="year" class="input" placeholder="Tahun"
-                            min="{{ date('Y') - 3 }}" max="{{ date('Y') }}" value="{{ $year }}"
+                            min="{{ date('Y') - 3 }}" max="{{ date('Y') }}" value="{{ $form->year }}"
                             wire:model.live.debounce="form.year" />
                         @error('form.year')
                             <p class="label text-error">{{ $message }}</p>

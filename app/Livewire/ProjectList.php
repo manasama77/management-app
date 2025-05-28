@@ -17,14 +17,19 @@ class ProjectList extends Component
 
     public $keyword = '';
 
-    protected $project_id = null;
-
     public function render()
     {
         $keyword = $this->keyword;
+
         $project_lists = Project::with([
             'user_pic',
-        ])->when($keyword != '', function($q) use ($keyword) {
+            'sph',
+            'spk',
+            'kak_rab',
+            'invoice',
+            'bast',
+            'sp2d',
+        ])->when($keyword != '', function ($q) use ($keyword) {
             $q->whereLike('no_project', "%$keyword%")
                 ->orWhereLike('project_name', "%$keyword%")
                 ->orWhereLike('client', "%$keyword%")
@@ -34,12 +39,17 @@ class ProjectList extends Component
                 });
         })->paginate(5);
 
+        $is_sph = $project_lists->sum(function ($project) {
+            return $project->sph ? 1 : 0;
+        });
+
         return view('livewire.project-list', [
-            'project_lists' => $project_lists
+            'project_lists' => $project_lists,
+            'is_sph' => $is_sph
         ]);
     }
 
-    #[On('show-detail')]
+    #[On('show-detail-project')]
     public function show_detail($id)
     {
         $project_list = Project::with([
@@ -54,6 +64,15 @@ class ProjectList extends Component
 
         $v_detail = view('components.project-detail', compact('project_list'))->render();
 
-        $this->dispatch('show-modal', title: 'Project Detail', v_detail: $v_detail);
+        $this->dispatch('show-modal', title: 'Project Detail', detail: $v_detail);
+    }
+
+    #[On('delete-project')]
+    public function destroy($id)
+    {
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect()->back()->with('success', 'Project berhasil dihapus');
     }
 }

@@ -15,9 +15,7 @@ class SphCreate extends Component
 {
     use WithFileUploads;
 
-    public $project_id;
-    public $project_name;
-    public $client;
+    public ?Project $project;
 
     #[Validate('required', message: 'No SPH harus diisi')]
     #[Validate('min:4', message: 'No SPH harus diisi minimal 4 karakter')]
@@ -34,14 +32,26 @@ class SphCreate extends Component
     #[Validate('max:5120', message: 'File Berita Acara harus diisi kurang dari 5 MB')]
     public $acara_negosiasi_file;
 
-    public function mount(Project $project) {
-        $this->project_id = $project->id;
-        $this->project_name = $project->project_name;
-        $this->client = $project->client;
+    public function mount(Project $project)
+    {
+        $this->project = $project;
     }
 
     public function render()
     {
         return view('livewire.sph-create');
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->project->sph()->create([
+            'no_sph' => $this->no_sph,
+            'berita_acara_file' => $this->berita_acara_file->store('sph', 'public'),
+            'acara_negosiasi_file' => $this->acara_negosiasi_file->store('sph', 'public'),
+        ]);
+
+        return redirect()->route('project-list')->with('success', 'SPH berhasil ditambahkan');
     }
 }

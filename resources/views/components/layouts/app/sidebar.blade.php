@@ -18,74 +18,74 @@
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-home class="size-4" />
-                    <div class="pt-0.5">{{ __('Dashboard') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-home class="size-4" />
+                        <div class="pt-0.5">{{ __('Dashboard') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('project-list')" :current="request()->routeIs('project-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('Project List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-project-diagram class="size-4" />
+                        <div class="pt-0.5">{{ __('Project') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('sph-list')" :current="request()->routeIs('sph-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('SPH List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('SPH') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('spk-list')" :current="request()->routeIs('spk-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('SPK List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('SPK') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('kak-rab-list')" :current="request()->routeIs('kak-rab-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('KAK dan RAB List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('KAK & RAB') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('invoice-list')" :current="request()->routeIs('invoice-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('Invoice List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('Invoice') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('bast-list')" :current="request()->routeIs('bast-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('BAST List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('BAST') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('sp2d-list')" :current="request()->routeIs('sp2d-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-project-diagram class="size-4" />
-                    <div class="pt-0.5">{{ __('SP2D List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-file-lines class="size-4" />
+                        <div class="pt-0.5">{{ __('SP2D') }}</div>
+                    </div>
                 </flux:navlist.item>
 
                 {{-- blade-formatter-disable-next-line --}}
                 <flux:navlist.item :href="route('user-list')" :current="request()->routeIs('user-list')" wire:navigate>
-                <div class="flex flex-row items-center gap-2">
-                    <x-fas-users class="size-4" />
-                    <div class="pt-0.5">{{ __('User List') }}</div>
-                </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <x-fas-users class="size-4" />
+                        <div class="pt-0.5">{{ __('User') }}</div>
+                    </div>
                 </flux:navlist.item>
 
             </flux:navlist.group>
@@ -97,7 +97,7 @@
         <flux:dropdown position="bottom" align="start">
             {{-- blade-formatter-disable-next-line --}}
             <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
-            icon-trailing="chevrons-up-down" />
+                icon-trailing="chevrons-up-down" />
 
             <flux:menu class="w-[220px]">
                 <flux:menu.radio.group>
