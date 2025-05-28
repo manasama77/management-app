@@ -23,11 +23,12 @@ use App\Livewire\ProjectListCreate;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\UserEdit;
+use App\Livewire\UserReset;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 })->name('home');
 
 Route::middleware(['auth'])->group(function () {
@@ -58,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user-list', UserList::class)->name('user-list');
     Route::get('user-create', UserCreate::class)->name('user.create');
     Route::get('user-edit/{user}', UserEdit::class)->name('user.edit');
+    Route::get('user-reset/{user}', UserReset::class)->name('user.reset');
 
     Route::redirect('settings', 'settings/profile');
 

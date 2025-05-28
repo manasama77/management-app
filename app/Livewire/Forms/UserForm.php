@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use Livewire\Form;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,9 +12,6 @@ class UserForm extends Form
 {
     public ?User $user;
 
-    #[Validate('required', message: 'Username harus diisi')]
-    #[Validate('min:4', message: 'Username harus diisi minimal 4 karakter')]
-    #[Validate('unique:users', message: 'Username sudah digunakan')]
     public $username;
 
     #[Validate('required', message: 'Password harus diisi')]
@@ -29,10 +27,36 @@ class UserForm extends Form
     #[Validate('min:4', message: 'Nama harus diisi minimal 4 karakter')]
     public $name;
 
-    #[Validate('required', message: 'Email harus diisi')]
-    #[Validate('unique:users', message: 'Email sudah digunakan')]
-    #[Validate('email:rfc,dns', message: 'Email tidak valid')]
     public $email;
+
+    protected  function rules()
+    {
+        return [
+            'username' => [
+                'required',
+                'min:4',
+                Rule::unique('users')->ignore($this->user->id),
+            ],
+            'email' => [
+                'required',
+                'email:rfc,dns',
+                Rule::unique('users')->ignore($this->user->id),
+            ]
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'username.required' => 'Username harus diisi.',
+            'username.min' => 'Username terlalu pendek.',
+            'username.unique' => 'Username sudah digunakan.',
+
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+        ];
+    }
 
     public function setUser(User $user)
     {
@@ -45,18 +69,16 @@ class UserForm extends Form
     public function store()
     {
         $this->validate();
-
-        $this->user->username = $this->username;
-        $this->user->password = Hash::make($this->password);
-        $this->user->name = $this->name;
-        $this->user->email = $this->email;
-        $this->user->save();
+        User::create($this->all());
     }
 
     public function update()
     {
         $this->validate();
-        $this->user->update($this->only('username', 'email', 'name'));
+        $this->user->username = $this->username;
+        $this->user->name = $this->name;
+        $this->user->email = $this->email;
+        dd($this->user->save());
     }
 
     public function delete()

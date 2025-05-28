@@ -11,7 +11,7 @@ use App\Livewire\Forms\ProjectForm;
 
 class ProjectListEdit extends Component
 {
-    public ProjectForm $form;
+    public ?ProjectForm $form;
 
     public $title = 'Edit Project';
 

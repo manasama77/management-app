@@ -15,7 +15,7 @@
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="username">Username</legend>
                         <input type="text" name="username" class="input" placeholder="Username"
-                            wire:model.live.debounce="username" />
+                            wire:model="username" autocomplete="username" />
                         @error('username')
                         <p class="label text-error">{{ $message }}</p>
                         @enderror
@@ -23,7 +23,7 @@
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="password">Password</legend>
                         <input type="password" name="password" class="input" placeholder="Password"
-                            wire:model="password" />
+                            wire:model="password" autocomplete="new-password" />
                         @error('password')
                         <p class="label text-error">{{ $message }}</p>
                         @enderror
@@ -31,7 +31,7 @@
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="password_confirmation">Konfirmasi Password</legend>
                         <input type="password" name="password_confirmation" class="input"
-                            placeholder="Konfirmasi Password" wire:model="password_confirmation" />
+                            placeholder="Konfirmasi Password" wire:model="password_confirmation" autocomplete="new-password" />
                         @error('password_confirmation')
                         <p class="label text-error">{{ $message }}</p>
                         @enderror
@@ -39,7 +39,7 @@
                     <hr />
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="name">Nama</legend>
-                        <input type="text" name="name" class="input" placeholder="Nama"
+                        <input type="text" name="name" class="input" placeholder="Nama" value="{{ $form->name ?? '' }}"
                             wire:model.live.debounce="name" />
                         @error('name')
                         <p class="label text-error">{{ $message }}</p>
@@ -47,7 +47,7 @@
                     </fieldset>
                     <fieldset class="fieldset">
                         <legend class="fieldset-legend" for="email">Email</legend>
-                        <input type="email" name="email" class="input" placeholder="mail@example.com"
+                        <input type="email" name="email" class="input" placeholder="mail@example.com" value="{{ $form->email ?? '' }}"
                             wire:model.live.debounce="email" />
                         @error('email')
                         <p class="label text-error">{{ $message }}</p>
